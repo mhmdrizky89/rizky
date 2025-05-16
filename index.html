@@ -2,9 +2,115 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pertanyaan Spesial</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #fce4ec;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      padding: 20px;
+    }
+
+    .wrapper {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #d81b60;
+      margin-bottom: 20px;
+    }
+
+    .gif {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      animation: pop 1s ease;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .yes-btn {
+      background-color: #d81b60;
+      color: white;
+    }
+
+    .yes-btn:hover {
+      background-color: #c2185b;
+    }
+
+    .no-btn {
+      background-color: white;
+      color: #d81b60;
+      border: 2px solid #d81b60;
+      position: absolute;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive untuk layar kecil */
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .gif {
+        width: 220px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        height: 120px;
+      }
+
+      .no-btn {
+        position: fixed;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -16,6 +122,33 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Musik romantis -->
+  <audio id="love-music" src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_82d930f2e9.mp3?filename=soft-romantic-112.mp3" preload="auto"></audio>
+
+  <script>
+    const question = document.querySelector(".question");
+    const gif = document.querySelector(".gif");
+    const yesBtn = document.querySelector(".yes-btn");
+    const noBtn = document.querySelector(".no-btn");
+    const loveMusic = document.getElementById("love-music");
+
+    yesBtn.addEventListener("click", () => {
+      question.innerHTML = "Awww, aku juga suka kamu!";
+      gif.src = "https://raw.githubusercontent.com/DzarelDeveloper/Img/main/gif.webp";
+      loveMusic.play();
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      const noBtnRect = noBtn.getBoundingClientRect();
+      const maxX = window.innerWidth - noBtnRect.width;
+      const maxY = window.innerHeight - noBtnRect.height;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    });
+  </script>
 </body>
 </html>
