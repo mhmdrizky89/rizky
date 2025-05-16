@@ -2,65 +2,29 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RizkyDev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Bucin - Cinta Selalu</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- AOS CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1 class="logo">Rizky<span>Dev</span></h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#">Beranda</a></li>
-          <li><a href="#tentang">Tentang</a></li>
-          <li><a href="#proyek">Proyek</a></li>
-          <li><a href="#">Kontak</a></li>
-        </ul>
-      </nav>
+  <div class="container">
+    <header>
+      <h1>Web Bucin</h1>
       <button id="toggleDark" class="dark-btn">🌙</button>
-    </div>
-  </header>
+    </header>
 
-  <section class="hero" data-aos="fade-up">
-    <div class="container">
-      <h2 id="greeting">Selamat Datang di Dunia Digital</h2>
-      <p>Eksplorasi proyek-proyek keren dari Mhmd Rizky. Belajar, berkembang, dan berinovasi!</p>
-      <a href="#proyek" class="btn" onclick="btnClick()">Lihat Proyek</a>
-    </div>
-  </section>
+    <main>
+      <section class="quote-section">
+        <h2 id="quote">Cinta adalah perjalanan tanpa peta.</h2>
+      </section>
 
-  <section id="tentang" class="info" data-aos="fade-left">
-    <div class="container">
-      <h2>Tentang Saya</h2>
-      <p>Saya Mhmd Rizky, seorang digital enthusiast yang senang membangun, belajar, dan bereksperimen dengan teknologi dan desain modern.</p>
-    </div>
-  </section>
+      <button id="likeBtn" class="btn">Like ❤️ 0</button>
+    </main>
 
-  <section id="proyek" class="info" data-aos="fade-right">
-    <div class="container">
-      <h2>Proyek Keren</h2>
-      <div class="card">
-        <h3>RizkyDev Website</h3>
-        <p>Website personal modern dengan fitur dark mode dan animasi scroll.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer data-aos="zoom-in">
-    <p>&copy; 2025 RizkyDev. Dibuat dengan semangat dan kopi.</p>
-  </footer>
-
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      once: true,
-      duration: 1000
-    });
-  </script>
+    <footer>
+      <p>Created with ❤️ by Mhmd Rizky</p>
+    </footer>
+  </div>
 </body>
 </html>
