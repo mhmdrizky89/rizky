@@ -3,35 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Bucin - Cinta Selalu</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-  <script src="script.js" defer></script>
+  <title>Web Bucin HTML Only</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffe0ec, #ffdada);
+      color: #910038;
+      text-align: center;
+      padding: 40px;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-family: cursive;
+    }
+
+    .quote {
+      font-size: 1.3rem;
+      font-style: italic;
+      margin: 30px 0;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #e60039;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+
+    .dark {
+      background: linear-gradient(to right, #1e1e1e, #2c2c2c);
+      color: #ffb3c6;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Web Bucin</h1>
-      <button id="musicToggle" class="music-btn">🔊</button>
-      <button id="toggleDark" class="dark-btn">🌙</button>
-    </header>
+  <h1>Web Bucin</h1>
 
-    <main>
-      <section class="quote-section">
-        <p id="quote">"Cinta adalah kamu dalam bentuk paling manis."</p>
-      </section>
-      <button id="likeBtn" class="btn">Like ❤️ 0</button>
-    </main>
+  <div class="quote" id="quote">"Cinta adalah kamu dalam bentuk paling manis."</div>
 
-    <footer>
-      <p>Created with ❤️ by Mhmd Rizky</p>
-    </footer>
-  </div>
+  <button onclick="like()">Like ❤️ <span id="likeCount">0</span></button>
+  <button onclick="toggleDark()">🌙 Dark Mode</button>
+  <button onclick="toggleMusic()">🔊 Musik</button>
 
-  <!-- Musik Latar -->
+  <footer>
+    <p>Created with ❤️ by Mhmd Rizky</p>
+  </footer>
+
+  <!-- Audio Bucin -->
   <audio id="bgMusic" autoplay loop>
     <source src="bucin.mp3" type="audio/mpeg" />
-    Browser kamu tidak mendukung audio.
+    Browser tidak mendukung audio.
   </audio>
+
+  <script>
+    const quotes = [
+      "Cinta adalah kamu dalam bentuk paling manis.",
+      "Pelukmu adalah tempat favoritku.",
+      "Kamu bukan segalanya, tapi tanpamu aku bukan apa-apa.",
+      "Bersamamu, waktu terasa berhenti.",
+      "Cinta kita bukan main-main, ini serius dan lucu."
+    ];
+
+    let likeCount = 0;
+    let currentQuote = 0;
+    let dark = false;
+    let music = true;
+
+    function like() {
+      likeCount++;
+      document.getElementById("likeCount").textContent = likeCount;
+    }
+
+    function toggleDark() {
+      dark = !dark;
+      document.body.classList.toggle("dark");
+    }
+
+    function toggleMusic() {
+      const bgMusic = document.getElementById("bgMusic");
+      music ? bgMusic.pause() : bgMusic.play();
+      music = !music;
+    }
+
+    setInterval(() => {
+      currentQuote = (currentQuote + 1) % quotes.length;
+      document.getElementById("quote").textContent = `"${quotes[currentQuote]}"`;
+    }, 4000);
+  </script>
 </body>
 </html>
