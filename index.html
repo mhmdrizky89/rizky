@@ -2,23 +2,24 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web Bucin - Cinta Selalu</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <script src="script.js" defer></script>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>Web Bucin</h1>
+      <button id="musicToggle" class="music-btn">🔊</button>
       <button id="toggleDark" class="dark-btn">🌙</button>
     </header>
 
     <main>
       <section class="quote-section">
-        <h2 id="quote">Cinta adalah perjalanan tanpa peta.</h2>
+        <p id="quote">"Cinta adalah kamu dalam bentuk paling manis."</p>
       </section>
-
       <button id="likeBtn" class="btn">Like ❤️ 0</button>
     </main>
 
@@ -26,5 +27,11 @@
       <p>Created with ❤️ by Mhmd Rizky</p>
     </footer>
   </div>
+
+  <!-- Musik Latar -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="bucin.mp3" type="audio/mpeg" />
+    Browser kamu tidak mendukung audio.
+  </audio>
 </body>
 </html>
