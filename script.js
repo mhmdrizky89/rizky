@@ -1,33 +1,33 @@
-// Greeting otomatis berdasarkan waktu
-const greeting = document.getElementById("greeting");
-const hour = new Date().getHours();
+const quotes = [
+  "Cinta adalah perjalanan tanpa peta.",
+  "Kamu adalah alasan aku tersenyum setiap hari.",
+  "Dalam pelukanmu, aku temukan rumah.",
+  "Cinta sejati tak pernah berakhir, hanya berubah bentuk.",
+  "Kamu dan aku, kita adalah cerita yang takkan terlupakan."
+];
 
-if (hour >= 5 && hour < 12) {
-  greeting.textContent = "Selamat Pagi, Selamat Datang di Dunia Digital";
-} else if (hour >= 12 && hour < 17) {
-  greeting.textContent = "Selamat Siang, Selamat Datang di Dunia Digital";
-} else if (hour >= 17 && hour < 21) {
-  greeting.textContent = "Selamat Sore, Selamat Datang di Dunia Digital";
-} else {
-  greeting.textContent = "Selamat Malam, Selamat Datang di Dunia Digital";
+let currentIndex = 0;
+const quoteEl = document.getElementById('quote');
+const likeBtn = document.getElementById('likeBtn');
+const toggleDark = document.getElementById('toggleDark');
+
+function showNextQuote() {
+  currentIndex = (currentIndex + 1) % quotes.length;
+  quoteEl.textContent = quotes[currentIndex];
 }
 
-// Simulasi loading tombol
-function btnClick() {
-  const btn = document.querySelector(".btn");
-  btn.textContent = "Loading...";
-  btn.style.backgroundColor = "#fff";
-  btn.style.color = "#000";
-  setTimeout(() => {
-    btn.textContent = "Lihat Proyek";
-    btn.style.backgroundColor = "var(--btn-bg)";
-    btn.style.color = "#000";
-  }, 2000);
-}
+// Ganti quote tiap 4 detik
+setInterval(showNextQuote, 4000);
+
+// Like button counter
+let likes = 0;
+likeBtn.addEventListener('click', () => {
+  likes++;
+  likeBtn.textContent = `Like ❤️ ${likes}`;
+});
 
 // Dark mode toggle
-const toggleDark = document.getElementById("toggleDark");
-toggleDark.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  toggleDark.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+toggleDark.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  toggleDark.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
