@@ -1,58 +1,89 @@
+:root {
+  --bg-color: #f0f4f8;
+  --text-color: #333;
+  --primary: #00ffd5;
+  --header-bg: #0f2027;
+  --btn-bg: #00ffd5;
+  --btn-hover: #00c9aa;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #eee;
+  --header-bg: #1e1e1e;
+  --btn-bg: #00ffd5;
+  --btn-hover: #00c9aa;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #fff;
-  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: var(--header-bg);
+  color: white;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
-}
-
-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  flex-wrap: wrap;
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 .logo span {
-  color: #00ffd5;
+  color: var(--primary);
 }
 
-nav ul {
+.nav-links {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-nav a {
-  text-decoration: none;
+.nav-links a {
   color: #fff;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #00ffd5;
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.dark-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #fff;
 }
 
 .hero {
+  padding: 100px 20px;
   text-align: center;
-  margin-top: 100px;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
 }
 
 .hero h2 {
@@ -66,9 +97,9 @@ nav a:hover {
 }
 
 .btn {
-  padding: 12px 24px;
-  background-color: #00ffd5;
+  background-color: var(--btn-bg);
   color: #000;
+  padding: 12px 25px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -76,5 +107,37 @@ nav a:hover {
 }
 
 .btn:hover {
-  background-color: #00c9aa;
+  background-color: var(--btn-hover);
+}
+
+.info {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+body.dark .card {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--header-bg);
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 40px;
 }
