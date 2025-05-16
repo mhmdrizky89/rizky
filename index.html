@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pertanyaan Spesial</title>
+  <title>Pertanyaan Gemoy</title>
   <style>
     * {
       margin: 0;
@@ -20,6 +20,7 @@
       font-family: "Comic Sans MS", cursive, sans-serif;
       padding: 20px;
       overflow: hidden;
+      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat988.cur'), auto;
     }
 
     .wrapper {
@@ -68,10 +69,6 @@
       color: white;
     }
 
-    .yes-btn:hover {
-      background-color: #c2185b;
-    }
-
     .no-btn {
       background-color: white;
       color: #d81b60;
@@ -81,8 +78,9 @@
 
     .footer {
       margin-top: 15px;
-      font-size: 0.9rem;
-      color: #999;
+      font-size: 0.95rem;
+      color: #555;
+      font-style: italic;
     }
 
     .surprise {
@@ -93,8 +91,7 @@
       display: none;
     }
 
-    /* Popup love animation */
-    .popup-heart {
+    .popup-heart, .emoji-float {
       position: absolute;
       font-size: 2rem;
       animation: float 2s ease-out forwards;
@@ -112,6 +109,50 @@
       }
     }
 
+    .popup-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff0f5;
+      padding: 20px 30px;
+      border-radius: 20px;
+      border: 2px solid #d81b60;
+      font-size: 1.3rem;
+      color: #d81b60;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: fadeInOut 2s ease forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translate(-50%, -60%); }
+      20% { opacity: 1; transform: translate(-50%, -50%); }
+      80% { opacity: 1; transform: translate(-50%, -50%); }
+      100% { opacity: 0; transform: translate(-50%, -40%); }
+    }
+
+    .chibi {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      z-index: 999;
+    }
+
+    .uwu-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background-color: #ffb6c1;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 999;
+    }
+
     @media (max-width: 600px) {
       h2 { font-size: 1.6rem; }
       .gif { width: 220px; }
@@ -121,6 +162,7 @@
   </style>
 </head>
 <body>
+  <button class="uwu-btn">Aktifkan UwU Mode</button>
   <div class="wrapper">
     <h2 class="question">Kamu menyukaiku?</h2>
     <img class="gif" alt="cute gif" src="https://raw.githubusercontent.com/DzarelDeveloper/Img/main/gifyou.webp" />
@@ -129,27 +171,35 @@
       <button class="no-btn">Enggak ah</button>
     </div>
     <div class="surprise">YEAYY!! Aku juga suka kamu! Sekarang kita resmi jadi tim baper 2025!</div>
-    <div class="footer">#2025 pembuat web</div>
+    <div class="footer">#2025 Web creator: Mhmd Rizky</div>
   </div>
 
+  <img class="chibi" src="https://media.tenor.com/3s8d3S1s0R0AAAAi/cute-anime.gif" alt="chibi cute" />
+
+  <audio id="pop-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5e2598e4f2.mp3?filename=pop-94319.mp3" preload="auto"></audio>
+
   <script>
-    const question = document.querySelector(".question");
-    const gif = document.querySelector(".gif");
     const yesBtn = document.querySelector(".yes-btn");
     const noBtn = document.querySelector(".no-btn");
+    const question = document.querySelector(".question");
+    const gif = document.querySelector(".gif");
     const surprise = document.querySelector(".surprise");
+    const uwuBtn = document.querySelector(".uwu-btn");
+    const popSound = document.getElementById("pop-sound");
+
+    const emojis = ['❤️', '✨', '🥺', '💕', '😍', '🌸'];
 
     yesBtn.addEventListener("click", () => {
       question.innerHTML = "Awww, kamu jujur juga ya~";
       gif.src = "https://raw.githubusercontent.com/DzarelDeveloper/Img/main/gif.webp";
       surprise.style.display = "block";
+      popSound.play();
 
-      // munculkan love banyak
       for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          showHeart();
-        }, i * 200);
+        setTimeout(showEmoji, i * 200);
       }
+
+      showPopupMessage("Cieee baper~");
     });
 
     noBtn.addEventListener("mouseover", () => {
@@ -161,18 +211,29 @@
       noBtn.style.top = randomY + "px";
     });
 
-    function showHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("popup-heart");
-      heart.innerText = "❤️";
-      heart.style.left = Math.random() * 100 + "%";
-      heart.style.top = "50%";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 2000);
+    function showEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji-float");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "%";
+      emoji.style.top = "50%";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 2000);
     }
+
+    function showPopupMessage(message) {
+      const popup = document.createElement("div");
+      popup.className = "popup-message";
+      popup.innerText = message;
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 2100);
+    }
+
+    uwuBtn.addEventListener("click", () => {
+      document.body.style.fontFamily = "'Comic Sans MS', cursive";
+      document.querySelector(".question").innerText = "Kamu nyukaaa akuu nggaaa uwuwuw~?";
+      uwuBtn.innerText = "UwU Mode Aktif~";
+    });
   </script>
 </body>
 </html>
